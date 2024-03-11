@@ -5,7 +5,8 @@
 void bubbleSort(int vetor[], int tamanho){
     int aux;
     
-    for(int loop1 = 0;loop1 < tamanho; loop1++){
+    for(int loop1 = 0;loop1 < tamanho; loop1++)
+    {
         for(int loop2 = 0; loop2 < tamanho; loop2++){
             if(vetor[loop2] > vetor[loop2 + 1]){
                 aux = vetor[loop2];
