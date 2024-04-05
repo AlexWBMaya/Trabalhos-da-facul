@@ -4,6 +4,7 @@
  */
 package visao;
 import entidades.Paciente;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -212,18 +213,28 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jButton_ExecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ExecutarActionPerformed
         // TODO add your handling code here:
-        String strNome = jTextField_NomeCompleto.getText();
-        String strPeso = jTextField_Peso.getText();
-        String strAltura = jTextField_Altura.getText();
-        String strSexo = jComboBox_Sexo.getName();
-        
-        int peso = Integer.parseInt(strPeso);
-        float altura = Float.parseFloat(strAltura);
-        
-        var intResultado = (int) (peso / (Math.pow(altura, 2)));
-        String strResultado = String.valueOf(intResultado);
-        jTextArea_Resultado.append(strResultado + "\n");
-        jTextArea_Resultado.append(strNome + "\n");
+        try {
+            Paciente p1 = new Paciente();
+            
+            System.out.println(p1.toString());
+            
+            p1.setNomeCompleto(jTextField_NomeCompleto.getText());
+            p1.setPeso(Integer.parseInt(jTextField_Peso.getText()));
+            p1.setAltura(Float.parseFloat(jTextField_Altura.getText()));
+            p1.setSexo((String) jComboBox_Sexo.getSelectedItem());
+
+            String saida = "Clinica gyn\n";
+            saida += "Dados do paciente\n";
+            saida += "Nome completo; " + p1.getNomeCompleto() + "\n";
+            saida += "Peso; " + p1.getPeso() + "\n";
+            saida += "Altura; " + p1.getAltura()+ "\n";
+            saida += "sexo; " + p1.getSexo() + "\n";
+            saida += "imc; " + p1.calcularIMC() + "\n";
+            
+            jTextArea_Resultado.setText(saida);
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, erro.getMessage());
+        }
     }//GEN-LAST:event_jButton_ExecutarActionPerformed
 
     private void jComboBox_SexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_SexoActionPerformed
