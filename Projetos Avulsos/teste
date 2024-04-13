@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+int existe(int vetoruniao[], int tamanhouniao, int vetor2)
+{
+    for (int loop1 = 0; loop1 < tamanhouniao; loop1++)
+    {
+        if (vetoruniao[loop1] == vetor2)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+}
+void uniao(int *vet1, int *vet2, int tamanho1, int tamanho2)
+{
+    int vetormaster[tamanho1+tamanho2];
+    for (int loop1 = 0; loop1 < tamanho1; loop1++)
+    {
+        vetormaster[loop1] = *(vet1 + loop1);
+    }
+    for (int loop2 = 0; loop2 < (tamanho2); loop2++)
+    {
+        if (existe(vetormaster, (tamanho1+tamanho2), *(vet2 + loop2)) == 0)
+        {
+            vetormaster[tamanho1+loop2] = *(vet2 + loop2);
+        }
+    }
+    for (int loop2 = 0; loop2 < (tamanho1 + tamanho2); loop2++)
+    {
+        printf("%d", vetormaster[loop2])
+    }
+    
+}
+
+int main()
+{
+    int vet1[] = {1, 2, 3};
+    int vet2[] = {3, 4, 5};
+    int tamanho1 = sizeof(vet1) / sizeof(vet1[0]);
+    int tamanho2 = sizeof(vet2) / sizeof(vet2[0]);
+
+    uniao(vet1, vet2, tamanho1, tamanho2);
+    
+    return 0;
+}
